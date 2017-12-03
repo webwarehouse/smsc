@@ -28,5 +28,18 @@ module Smsc
       @connection.post '/sys/send.php', params
     end
 
+    def cost(message, phones, options = {})
+      params = {
+        login: @login,
+        psw: @password,
+        phones: phones.join(','),
+        mes: message,
+        charset: @charset,
+        sender: options[:sender],
+        cost: 1
+      }
+
+      @connection.post '/sys/send.php', params
+    end
   end
 end
